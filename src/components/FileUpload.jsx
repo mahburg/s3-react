@@ -52,7 +52,7 @@ export default class FileUpload extends Component {
                 this.state.file &&
                 <img src={this.state.file} alt="" className="file-preview"/>  
                 }
-                <button onClick={this.sendPhoto}></button>
+                <button onClick={this.sendPhoto}>Upload</button>
             </div>
         )
     }
