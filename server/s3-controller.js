@@ -1,9 +1,8 @@
-require('dotenv').config({
-    path: '../.dev.env'
-})
+require('dotenv').config()
 
 const AWS = require('aws-sdk')
 
+// The keys will be obtained from you AWS account.
 AWS.config.update({
     accessKeyId: process.env.AWS_ACCESSKEY,
     secretAccessKey: process.env.AWS_SECRETKEY,
@@ -28,12 +27,15 @@ function uploadPhoto(req, res) {
 
     S3.upload(params, (err, data) => {
         console.log(err, data)
-        let response, code
-        err ? (resopnse = err, code = 500) : (response = data, code = 200)
-        res.status(code).send(response)
+        if(err){
+            res.status(500).send(err);
+        } else {
+            // the data obj will include have key called Location that will have the uploaded file's URL.
+            res.status(200).send(data)
+        }
     })
 }
 
-module.exports = function (app) {
-    app.post('/api/photoUpload', uploadPhoto)
+module.exports =  {
+    uploadPhoto: uploadPhoto
 }

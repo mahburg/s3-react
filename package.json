@@ -22,7 +22,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "main": "server/index.js",
   "proxy": "http://localhost:3001/",
-  "main": "server/main.js",
   "homepage": "http://localhost:3000/"
 }
